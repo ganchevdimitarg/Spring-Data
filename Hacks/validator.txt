@@ -1,0 +1,25 @@
+@Bean
+    public Validator validator(){
+        return Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @Bean
+    public ValidationUtil validationUtil() {
+        return new ValidationUtilImpl(validator());
+    }
+
+_________
+
+
+
+    private final Validator validator;
+
+    @Autowired
+    public ValidationUtilImpl(Validator validator) {
+        this.validator = validator;
+    }
+
+    @Override
+    public <E> boolean isValid(E entity) {
+        return this.validator.validate(entity).size() == 0;
+    }

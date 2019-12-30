@@ -1,0 +1,20 @@
+
+        File file = new File(path);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+
+        while ((line  = reader.readLine())  != null){
+            sb.append(line).append(System.lineSeparator());
+        }
+
+        return sb.toString().trim();
+
+------------------------------------------------
+
+List<String> lines = Files.readAllLines(Path.of(filePath));
+
+        return String.join("\n", lines);
